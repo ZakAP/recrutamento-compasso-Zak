@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import UserCard from "../components/UserCard/UserCard";
 import SearchBar from '../components/SearchBar/SearchBar';
 import ReposList from '../components/ReposList/ReposList';
@@ -9,19 +9,18 @@ function Home() {
     const [user, setUser] = useState(null)
     const [userRepos, setUserRepos] = useState(null)
     const [userStarred, setUserStarred] = useState(null)
-    const [userLogin, setUserLogin] = useState('')
     const [searchName, setSearchName] = useState('')
     const [showInfo, setShowInfo] = useState('')
 
     const authorization = {
-      baseUrl: "https://api.github.com",
-      client_id: "05b7013e29d24cbc6e96",
-      client_secret: "4cc53419635e5f2a0ca6847a9534d4e3306bbcd7"
+      baseUrl: "https://api.github.com/users/",
+      client_id: process.env.REACT_APP_client_id,
+      client_secret: process.env.REACT_APP_client_secret
     }
 
-    useEffect(() => {
+    const getUser = () => {
         axios
-          .get(`${authorization.baseUrl}/users/${searchName}?client_id=${authorization.client_id}&client_secret=${authorization.client_secret}`)
+          .get(`${authorization.baseUrl}${searchName}?client_id=${authorization.client_id}&client_secret=${authorization.client_secret}`)
           .then((ress) => {
             setUser(ress.data);
           })
@@ -29,7 +28,7 @@ function Home() {
             console.log(err);
           });
         axios
-          .get(`https://api.github.com/users/${searchName}/repos`)
+          .get(`${authorization.baseUrl}${searchName}/repos?client_id=${authorization.client_id}&client_secret=${authorization.client_secret}`)
           .then((ress) => {
             setUserRepos(ress.data);
           })
@@ -37,14 +36,14 @@ function Home() {
             console.log(err);
           });
         axios
-          .get(`https://api.github.com/users/${searchName}/starred`)
+          .get(`${authorization.baseUrl}${searchName}/starred?client_id=${authorization.client_id}&client_secret=${authorization.client_secret}`)
           .then((ress) => {
             setUserStarred(ress.data);
           })
           .catch(err => {
             console.log(err);
           });
-    }, [searchName])
+    }
 
     const onClickShowInfoRepos = () => {
       setShowInfo('repos')
@@ -87,9 +86,9 @@ function Home() {
     return (
       <div>
         <SearchBar
-        setUser={setUserLogin}
-        setSearch={setSearchName}
-        userLogin={userLogin}
+        setSearchName={setSearchName}
+        getUser={getUser}
+        searchName={searchName}
         />
 
         {user && <UserCard 

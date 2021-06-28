@@ -4,7 +4,7 @@ function Starred(props) {
     
     const userStarredList = props.UserStarred.map((star) =>{
         return (
-            <li>
+            <li key={star.id}>
                 <b>Nome do repositório:</b>
                 <p>{star.name}</p>
 

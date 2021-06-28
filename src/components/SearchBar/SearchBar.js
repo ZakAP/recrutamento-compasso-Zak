@@ -2,19 +2,19 @@ import React from "react";
 
 function SearchBar(props) {
 
-    const onChangeSetUser = (e) => {
-        props.setUser(e.target.value)
+    const onChangeSearchName = (e) => {
+        props.setSearchName(e.target.value)
     } 
     
     const onClickSearch = () => {
-        props.setSearch(props.userLogin)
-        props.setUser("")
+        props.getUser()
+        props.setSearchName('')
     }
 
     return (
       <div>
         
-        <input type="text" placeholder="Buscar usuário" onChange={onChangeSetUser} value={props.userLogin}/>
+        <input type="text" placeholder="Buscar usuário" onChange={onChangeSearchName} value={props.searchName}/>
         <button onClick={onClickSearch}>Buscar</button>
         
       </div>

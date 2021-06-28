@@ -1,12 +1,13 @@
 import React from "react";
+import "../../Styles/CardStyle.css"
 
 function UserCard(props) {
     return (
-      <div>
-        <h2>{props.login}</h2>
+      <section className="user_card">
+        <h1>{props.login}</h1>
         <img src={props.avatar} alt="User avatar" width="300" height="200" />
         <p>{props.name}</p>
-      </div>
+      </section>
     );
   }
   

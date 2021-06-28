@@ -4,6 +4,7 @@ import UserCard from "../components/UserCard/UserCard";
 import SearchBar from '../components/SearchBar/SearchBar';
 import ReposList from '../components/ReposList/ReposList';
 import Starred from '../components/Starred/Starred';
+import "../Styles/BasicStyle.css"
 
 function Home() {
     const [user, setUser] = useState(null)
@@ -59,27 +60,33 @@ function Home() {
       switch(showInfo) {
         case 'repos':
           return (
-            <div>
-              <button onClick={onClickShowInfoBack}>Voltar</button>
+            <>
+            <button onClick={onClickShowInfoBack}>Voltar</button>
+            <section>
               <ReposList
                 UserRepos={userRepos}
               />
-            </div>
+            </section>
+            </>
           )
         case 'starred':
           return (
-            <div>
+            <>
               <button onClick={onClickShowInfoBack}>Voltar</button>
-              <Starred 
-                UserStarred={userStarred}
-              />
-            </div>
+              <section>
+                <Starred 
+                  UserStarred={userStarred}
+                />
+              </section>
+            </>
           )
         default:
-          return <div>
-          <button onClick={onClickShowInfoRepos} >Repositórios</button>
-          <button onClick={onClickShowInfoStarred}>Starred</button>
-        </div>
+          return (
+            <section>
+              <button onClick={onClickShowInfoRepos} >Repositórios</button>
+              <button onClick={onClickShowInfoStarred}>Starred</button>
+            </section>
+          )
       }
     }
  

@@ -4,7 +4,8 @@ import Home from "../pages/Home";
 function Router() {
     return (
       <div>
-        <p>Minha página</p> 
+        <h1>Buscas GitHub</h1>
+        <h3>Ache as informações que precisa com um simples passo!</h3> 
         <Home />
       </div>
     );

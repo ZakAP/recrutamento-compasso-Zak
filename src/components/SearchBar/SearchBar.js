@@ -1,4 +1,5 @@
 import React from "react";
+import "../../Styles/BasicStyle.css"
 
 function SearchBar(props) {
 
@@ -12,12 +13,10 @@ function SearchBar(props) {
     }
 
     return (
-      <div>
-        
+      <section className="search_bar">
         <input type="text" placeholder="Buscar usuário" onChange={onChangeSearchName} value={props.searchName}/>
         <button onClick={onClickSearch}>Buscar</button>
-        
-      </div>
+      </section>
     );
 }
   

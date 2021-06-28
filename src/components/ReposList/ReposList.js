@@ -1,10 +1,11 @@
 import React from "react";
+import "../../Styles/CardStyle.css"
 
 function ReposList(props) {
     
     const userReposList = props.UserRepos.map((repos) =>{
         return (
-            <li key={repos.id}>
+            <li className="card" key={repos.id}>
                 <b>Nome do repositório:</b>
                 <p>{repos.name}</p>
 
@@ -12,18 +13,18 @@ function ReposList(props) {
                 <p>{repos.description}</p>
 
                 <b>Link do repositório:</b>
-                <p>{repos.html_url}</p>   
+                <a href={repos.html_url}>{repos.html_url}</a>   
             </li>
         )
     })
 
     return (
-      <div>
-        <h2>Repositórios do usuário</h2>
-        <ul>
-            {userReposList}
-        </ul>
-      </div>
+        <article className="conteiner">
+            <h2>Repositórios do usuário:</h2>
+            <ul>
+                {userReposList}
+            </ul>
+        </article>
     );
 }
   

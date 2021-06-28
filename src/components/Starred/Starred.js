@@ -1,10 +1,11 @@
 import React from "react";
+import "../../Styles/CardStyle.css"
 
 function Starred(props) {
     
     const userStarredList = props.UserStarred.map((star) =>{
         return (
-            <li key={star.id}>
+            <li className="card" key={star.id}>
                 <b>Nome do repositório:</b>
                 <p>{star.name}</p>
 
@@ -18,18 +19,18 @@ function Starred(props) {
                 <p>{star.description}</p>
 
                 <b>Link do repositório:</b>
-                <p>{star.html_url}</p>   
+                <a href={star.html_url}>{star.html_url}</a>   
             </li>
         )
     })
 
     return (
-      <div>
+      <article className="conteiner">
         <h2>Repositórios marcados:</h2>
         <ul>
             {userStarredList}
         </ul>
-      </div>
+      </article>
     );
 }
   
